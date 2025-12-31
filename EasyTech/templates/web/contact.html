@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+
+{% block title %}Contacto - EasyTech{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <div class="page-header-content fade-in">
+            <h1>Hablemos de tu <span class="gradient-text">Proyecto</span></h1>
+            <p>Estamos listos para ayudarte a hacer realidad tus ideas</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section section">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- Contact Info -->
+            <div class="contact-info slide-in">
+                <h2>Información de Contacto</h2>
+                <p>Envíanos un mensaje y nos pondremos en contacto contigo en menos de 24 horas.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@easytech.com</p>
+                            <p>contacto@easytech.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>+52 123 456 7890</p>
+                            <p>+52 098 765 4321</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Ubicación</h4>
+                            <p>Ciudad de México</p>
+                            <p>México</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <h4>Horario</h4>
+                            <p>Lunes - Viernes: 9:00 - 18:00</p>
+                            <p>Sábado: 10:00 - 14:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links-large">
+                    <h4>Síguenos</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">Facebook</a>
+                        <a href="#" class="social-icon">Twitter</a>
+                        <a href="#" class="social-icon">LinkedIn</a>
+                        <a href="#" class="social-icon">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="contact-form-wrapper slide-in">
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                
+                <form method="POST" class="contact-form" id="contactForm">
+                    {% csrf_token %}
+                    <h3>Envíanos un Mensaje</h3>
+                    
+                    <div class="form-group">
+                        <label for="name">Nombre Completo *</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required 
+                            placeholder="Tu nombre completo"
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required 
+                            placeholder="tu@email.com"
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            placeholder="+52 123 456 7890"
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensaje *</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            required 
+                            rows="6" 
+                            placeholder="Cuéntanos sobre tu proyecto o necesidad..."
+                        ></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mapa o Información Adicional -->
+<section class="map-section section-dark">
+    <div class="container">
+        <div class="map-content fade-in">
+            <h2>¿Prefieres una videollamada?</h2>
+            <p>Agenda una reunión virtual y hablemos en tiempo real sobre tu proyecto</p>
+            <div class="map-buttons">
+                <a href="#" class="btn btn-secondary">Agendar en Google Meet</a>
+                <a href="#" class="btn btn-secondary">Agendar en Zoom</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section section">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Preguntas <span class="gradient-text">Frecuentes</span></h2>
+        </div>
+        
+        <div class="faq-grid">
+            <div class="faq-item fade-in">
+                <h4>¿Cuánto tiempo toma desarrollar un proyecto?</h4>
+                <p>Depende del alcance, pero proyectos típicos van de 4 a 12 semanas. Te daremos una estimación precisa después de conocer tus requerimientos.</p>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <h4>¿Cómo manejan los presupuestos?</h4>
+                <p>Trabajamos con presupuestos fijos basados en alcance definido, o tiempo y materiales para proyectos evolutivos. Siempre con transparencia total.</p>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <h4>¿Ofrecen soporte post-lanzamiento?</h4>
+                <p>Sí, todos nuestros proyectos incluyen un período de garantía y ofrecemos planes de mantenimiento continuo.</p>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <h4>¿Trabajan con empresas fuera de México?</h4>
+                <p>¡Por supuesto! Trabajamos remotamente con clientes en toda Latinoamérica y España.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Servicios - EasyTech{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <div class="page-header-content fade-in">
+            <h1>Nuestros <span class="gradient-text">Servicios</span></h1>
+            <p>Soluciones tecnológicas completas para impulsar tu negocio</p>
+        </div>
+    </div>
+</section>
+
+<!-- Services Detail Section -->
+<section class="services-detail section">
+    <div class="container">
+        {% for service in services %}
+        <div class="service-detail-card {% if forloop.counter|divisibleby:2 %}reverse{% endif %} slide-in">
+            <div class="service-detail-content">
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+                <ul class="service-features">
+                    {% if 'Web' in service.title %}
+                    <li>✓ Aplicaciones web responsivas</li>
+                    <li>✓ E-commerce y plataformas digitales</li>
+                    <li>✓ APIs y microservicios</li>
+                    <li>✓ Progressive Web Apps (PWA)</li>
+                    {% elif 'Móvil' in service.title %}
+                    <li>✓ Apps nativas (iOS/Android)</li>
+                    <li>✓ React Native / Flutter</li>
+                    <li>✓ Integración con servicios cloud</li>
+                    <li>✓ Publicación en stores</li>
+                    {% elif 'Empresariales' in service.title %}
+                    <li>✓ ERP personalizados</li>
+                    <li>✓ CRM y automatización</li>
+                    <li>✓ Gestión de inventarios</li>
+                    <li>✓ Sistemas de facturación</li>
+                    {% elif 'Consultoría' in service.title %}
+                    <li>✓ Auditoría de código</li>
+                    <li>✓ Arquitectura de software</li>
+                    <li>✓ Migración tecnológica</li>
+                    <li>✓ Optimización de procesos</li>
+                    {% elif 'Cloud' in service.title %}
+                    <li>✓ AWS / Azure / Google Cloud</li>
+                    <li>✓ Contenedores y Kubernetes</li>
+                    <li>✓ CI/CD pipelines</li>
+                    <li>✓ Monitoreo y alertas</li>
+                    {% else %}
+                    <li>✓ Actualizaciones periódicas</li>
+                    <li>✓ Monitoreo 24/7</li>
+                    <li>✓ Corrección de bugs</li>
+                    <li>✓ Soporte técnico dedicado</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Llamada a la Acción -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content fade-in">
+            <h2>¿Tienes un proyecto en mente?</h2>
+            <p>Cuéntanos sobre tu proyecto y te enviaremos una propuesta personalizada</p>
+            <a href="{% url 'contact' %}" class="btn btn-primary btn-large">Solicitar Cotización</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

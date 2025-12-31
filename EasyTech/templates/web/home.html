@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Sección Hero -->
+<section class="hero" id="home">
+    <div class="hero-background">
+        <img src="/static/images/portadaET.jpeg" alt="EasyTech Background">
+        <div class="hero-overlay"></div>
+    </div>
+    <div class="container">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">
+                teamotoda 
+                <span class="gradient-text">Software Innovador</span>
+            </h1>
+            <p class="hero-subtitle">
+                Desarrollo de software a medida con tecnología de vanguardia
+            </p>
+            <div class="hero-buttons">
+                <a href="{% url 'services' %}" class="btn btn-primary">Ver Servicios</a>
+                <a href="{% url 'contact' %}" class="btn btn-secondary">Contáctanos</a>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- Vista Previa de Servicios -->
+<section class="services-preview section">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Nuestros <span class="gradient-text">Servicios</span></h2>
+            <p class="section-subtitle">Soluciones tecnológicas para cada necesidad</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card slide-in">
+                <h3>Desarrollo Web</h3>
+                <p>Aplicaciones web modernas, responsivas y escalables</p>
+            </div>
+            
+            <div class="service-card slide-in">
+                <h3>Desarrollo Móvil</h3>
+                <p>Apps nativas y multiplataforma para iOS y Android</p>
+            </div>
+            
+            <div class="service-card slide-in">
+                <h3>Sistemas Empresariales</h3>
+                <p>Soluciones personalizadas para tu negocio</p>
+            </div>
+            
+            <div class="service-card slide-in">
+                <h3>Consultoría IT</h3>
+                <p>Asesoramiento experto en tecnología</p>
+            </div>
+        </div>
+        
+        <div class="section-cta fade-in">
+            <a href="{% url 'services' %}" class="btn btn-primary">Ver Todos los Servicios</a>
+        </div>
+    </div>
+</section>
+
+<!-- Sección Cómo Trabajamos -->
+<section class="how-we-work section section-dark">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Cómo <span class="gradient-text">Trabajamos</span></h2>
+            <p class="section-subtitle">Un proceso probado para resultados excepcionales</p>
+        </div>
+        
+        <div class="process-grid">
+            <div class="process-step slide-in">
+                <div class="step-number">01</div>
+                <div class="step-icon">🔍</div>
+                <h3>Análisis</h3>
+                <p>Entendemos tu necesidad, objetivos y desafíos específicos</p>
+            </div>
+            
+            <div class="process-step slide-in">
+                <div class="step-number">02</div>
+                <div class="step-icon">🎨</div>
+                <h3>Diseño</h3>
+                <p>Creamos prototipos y diseñamos la experiencia de usuario</p>
+            </div>
+            
+            <div class="process-step slide-in">
+                <div class="step-number">03</div>
+                <div class="step-icon">💻</div>
+                <h3>Desarrollo</h3>
+                <p>Código limpio, escalable y con las mejores prácticas</p>
+            </div>
+            
+            <div class="process-step slide-in">
+                <div class="step-number">04</div>
+                <div class="step-icon">🚀</div>
+                <h3>Entrega & Soporte</h3>
+                <p>Acompañamiento continuo y soporte técnico permanente</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección Por Qué Elegir EasyTech -->
+<section class="why-choose section">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Por qué elegir <span class="gradient-text">EasyTech</span></h2>
+            <p class="section-subtitle">Nuestros diferenciales que nos hacen únicos</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🚀</div>
+                <h3>Soluciones 100% Personalizadas</h3>
+                <p>Cada proyecto es único y adaptado a tus necesidades específicas</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🧠</div>
+                <h3>Enfoque en Resultados Reales</h3>
+                <p>No solo código, sino soluciones que impactan tu negocio</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🔧</div>
+                <h3>Tecnología Moderna y Escalable</h3>
+                <p>Utilizamos las últimas tecnologías preparadas para crecer</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🤝</div>
+                <h3>Trato Directo y Acompañamiento</h3>
+                <p>Comunicación constante y transparente durante todo el proyecto</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">📈</div>
+                <h3>Pensado para Crecer</h3>
+                <p>Arquitecturas escalables que evolucionan con tu negocio</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">⚡</div>
+                <h3>Desarrollo Ágil</h3>
+                <p>Entregas rápidas e iterativas para validar ideas pronto</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Llamada a la Acción -->
+<section class="cta-section section-dark">
+    <div class="container">
+        <div class="cta-content fade-in">
+            <h2>¿Listo para transformar tu idea en realidad?</h2>
+            <p>Hablemos de tu proyecto y descubre cómo podemos ayudarte</p>
+            <a href="{% url 'contact' %}" class="btn btn-primary btn-large">Comenzar Ahora</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
