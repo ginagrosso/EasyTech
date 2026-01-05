@@ -4,6 +4,7 @@ Django settings for EasyTech project.
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Construir rutas dentro del proyecto así: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -118,3 +119,26 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración de Email
+ENVIRONMENT = config('ENVIRONMENT', default='development')
+ADMIN_EMAIL = config('ADMIN_EMAIL', default='info@easytech.com')
+
+if ENVIRONMENT == 'production':
+    # SendGrid para producción
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = 'apikey'
+    EMAIL_HOST_PASSWORD = config('SENDGRID_API_KEY', default='')
+    DEFAULT_FROM_EMAIL = f'EasyTech <{config("SENDGRID_FROM_EMAIL", default="noreply@easytech.com")}>'
+else:
+    # Gmail para desarrollo
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+    DEFAULT_FROM_EMAIL = f'EasyTech <{config("EMAIL_HOST_USER", default="noreply@easytech.com")}>'
