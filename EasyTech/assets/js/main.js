@@ -3,7 +3,7 @@
 // ============================================
 
 // ========================================
-// Smooth Cursor Trail con Gradient Particles
+// Smooth Cursor Trail con Gradient Particles (Sutil)
 // ========================================
 (function() {
     // Solo en escritorio
@@ -21,23 +21,23 @@
     
     const ctx = canvas.getContext('2d');
     const particles = [];
-    const particleCount = 8;
+    const particleCount = 3; // Reducido de 8 a 3
     
     let mouse = {
         x: 0,
         y: 0
     };
     
-    // Partícula con gradiente
+    // Partícula con gradiente sutil
     class Particle {
         constructor(x, y) {
             this.x = x;
             this.y = y;
             this.targetX = x;
             this.targetY = y;
-            this.size = Math.random() * 15 + 10;
-            this.opacity = 1;
-            this.ease = 0.15 + Math.random() * 0.1;
+            this.size = Math.random() * 4 + 3; // Círculos pequeños: 3-7px
+            this.opacity = 0.4; // Opacidad inicial reducida
+            this.ease = 0.2;
         }
         
         update() {
@@ -45,26 +45,25 @@
             this.x += (this.targetX - this.x) * this.ease;
             this.y += (this.targetY - this.y) * this.ease;
             
-            // Reducir opacidad gradualmente
-            this.opacity *= 0.96;
-            this.size *= 0.98;
+            // Reducir opacidad más rápido
+            this.opacity *= 0.92;
+            this.size *= 0.96;
         }
         
         draw() {
-            // Crear gradiente radial violeta-cian
+            // Crear gradiente radial violeta-cian muy sutil
             const gradient = ctx.createRadialGradient(
                 this.x, this.y, 0,
                 this.x, this.y, this.size
             );
             
-            gradient.addColorStop(0, `rgba(176, 38, 255, ${this.opacity * 0.8})`); // Violeta
-            gradient.addColorStop(0.5, `rgba(108, 132, 255, ${this.opacity * 0.6})`); // Mezcla
-            gradient.addColorStop(1, `rgba(0, 217, 255, ${this.opacity * 0.4})`); // Cian
+            gradient.addColorStop(0, `rgba(176, 38, 255, ${this.opacity * 0.3})`); // Violeta muy suave
+            gradient.addColorStop(0.5, `rgba(108, 132, 255, ${this.opacity * 0.2})`); // Mezcla
+            gradient.addColorStop(1, `rgba(0, 217, 255, ${this.opacity * 0.1})`); // Cian muy suave
             
             ctx.save();
-            ctx.globalCompositeOperation = 'lighter';
-            ctx.shadowBlur = 15;
-            ctx.shadowColor = 'rgba(176, 38, 255, 0.5)';
+            ctx.shadowBlur = 5; // Reducido de 15 a 5
+            ctx.shadowColor = `rgba(176, 38, 255, ${this.opacity * 0.2})`;
             ctx.fillStyle = gradient;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -110,7 +109,7 @@
             particles[i].draw();
             
             // Remover partículas muy pequeñas o transparentes
-            if (particles[i].opacity < 0.01 || particles[i].size < 1) {
+            if (particles[i].opacity < 0.01 || particles[i].size < 0.5) {
                 particles.splice(i, 1);
             }
         }
@@ -118,8 +117,8 @@
         requestAnimationFrame(animate);
     }
     
-    // Agregar partículas continuamente
-    setInterval(addParticle, 50);
+    // Agregar partículas con menos frecuencia
+    setInterval(addParticle, 80); // Aumentado de 50ms a 80ms
     
     // Ajustar canvas al redimensionar ventana
     window.addEventListener('resize', () => {
