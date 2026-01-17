@@ -19,7 +19,7 @@ SECRET_KEY = 'django-insecure-your-secret-key-here-change-in-production'
 # ADVERTENCIA DE SEGURIDAD: no ejecutar con debug activado en producción!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', 'easytech.ar', 'www.easytech.ar']
 
 
 # Definición de aplicaciones
@@ -142,3 +142,5 @@ else:
     EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
     EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
     DEFAULT_FROM_EMAIL = f'EasyTech <{config("EMAIL_HOST_USER", default="noreply@easytech.com")}>'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
