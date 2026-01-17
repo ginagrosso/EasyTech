@@ -34,9 +34,14 @@ def services(request):
             'icon': 'icon-consulting'
         },
         {
-            'title': 'Cloud & DevOps',
-            'description': 'Infraestructura en la nube y entrega continua.',
-            'icon': 'icon-cloud'
+            'title': 'Análisis de Datos & BI',
+            'description': 'Tableros inteligentes para transformar tus datos en decisiones estratégicas.',
+            'icon': 'icon-data'
+        },
+        {
+            'title': 'Diseño UX/UI',
+            'description': 'Interfaces modernas que garantizan una experiencia de usuario fluida y profesional.',
+            'icon': 'icon-design'
         },
         {
             'title': 'Mantenimiento & Soporte',
