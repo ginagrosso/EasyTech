@@ -2,13 +2,6 @@
   "version": 2,
   "builds": [
     {
-      "src": "build.sh",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "EasyTech/staticfiles"
-      }
-    },
-    {
       "src": "EasyTech/easytech/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
@@ -17,14 +10,11 @@
   "routes": [
     {
       "src": "/static/(.*)",
-      "dest": "/EasyTech/staticfiles/$1"
+      "dest": "/static/$1"
     },
     {
       "src": "/(.*)",
       "dest": "EasyTech/easytech/wsgi.py"
     }
-  ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "easytech.settings"
-  }
+  ]
 }
