@@ -296,6 +296,7 @@ p {
     z-index: 1;
     text-align: center;
     max-width: 900px;
+    margin: 0 auto;
 }
 
 .hero-title {
