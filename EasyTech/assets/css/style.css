@@ -697,7 +697,7 @@ p {
     
     /* About - Quiénes Somos Responsive */
     .about-two-columns {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 40px;
     }
     
@@ -712,10 +712,12 @@ p {
     
     .about-right {
         gap: 20px;
+        width: 100%;
     }
     
     .about-card-simple {
         padding: 25px;
+        width: 100%;
     }
     
     /* About - Nuestro Equipo Responsive */
@@ -724,13 +726,15 @@ p {
     }
     
     .team-grid-modern {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 40px;
+        width: 100%;
     }
     
     .team-member-modern {
         padding: 35px 25px;
         max-width: 100%;
+        width: 100%;
     }
     
     .member-photo-wrapper {
@@ -1495,23 +1499,40 @@ p {
     
     /* About - Quiénes Somos Mobile */
     .about-two-columns {
+        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
         gap: 30px;
+        width: 100%;
+    }
+    
+    .about-left {
+        width: 100%;
     }
     
     .about-left h2 {
         font-size: 1.8rem;
+        text-align: center;
     }
     
     .about-left .lead {
         font-size: 1.05rem;
+        text-align: center;
     }
     
     .about-left p {
         font-size: 0.95rem;
+        text-align: center;
+    }
+    
+    .about-right {
+        width: 100%;
     }
     
     .about-card-simple {
         padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .about-card-simple h3 {
@@ -1547,14 +1568,28 @@ p {
         margin-top: -30px;
     }
     
+    .team-grid-modern {
+        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 35px;
+        width: 100%;
+    }
+    
     .team-member-modern {
         padding: 30px 20px;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .member-photo-wrapper {
         width: 130px;
         height: 130px;
         margin-bottom: 20px;
+    }
+    
+    .member-content {
+        width: 100%;
     }
     
     .member-content h4 {
