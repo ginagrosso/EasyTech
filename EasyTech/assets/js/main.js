@@ -2,6 +2,134 @@
 // EasyTech - JavaScript Principal
 // ============================================
 
+// ========================================
+// Smooth Cursor Trail con Gradient Particles
+// ========================================
+(function() {
+    // Solo en escritorio
+    if (window.innerWidth <= 968) return;
+    
+    const canvas = document.createElement('canvas');
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '9999';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    document.body.appendChild(canvas);
+    
+    const ctx = canvas.getContext('2d');
+    const particles = [];
+    const particleCount = 8;
+    
+    let mouse = {
+        x: 0,
+        y: 0
+    };
+    
+    // Partícula con gradiente
+    class Particle {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.targetX = x;
+            this.targetY = y;
+            this.size = Math.random() * 15 + 10;
+            this.opacity = 1;
+            this.ease = 0.15 + Math.random() * 0.1;
+        }
+        
+        update() {
+            // Suavizado de movimiento (easing)
+            this.x += (this.targetX - this.x) * this.ease;
+            this.y += (this.targetY - this.y) * this.ease;
+            
+            // Reducir opacidad gradualmente
+            this.opacity *= 0.96;
+            this.size *= 0.98;
+        }
+        
+        draw() {
+            // Crear gradiente radial violeta-cian
+            const gradient = ctx.createRadialGradient(
+                this.x, this.y, 0,
+                this.x, this.y, this.size
+            );
+            
+            gradient.addColorStop(0, `rgba(176, 38, 255, ${this.opacity * 0.8})`); // Violeta
+            gradient.addColorStop(0.5, `rgba(108, 132, 255, ${this.opacity * 0.6})`); // Mezcla
+            gradient.addColorStop(1, `rgba(0, 217, 255, ${this.opacity * 0.4})`); // Cian
+            
+            ctx.save();
+            ctx.globalCompositeOperation = 'lighter';
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = 'rgba(176, 38, 255, 0.5)';
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+    
+    // Seguir movimiento del mouse
+    document.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+    
+    // Agregar partículas
+    function addParticle() {
+        if (particles.length < particleCount) {
+            particles.push(new Particle(mouse.x, mouse.y));
+        } else {
+            particles.shift();
+            particles.push(new Particle(mouse.x, mouse.y));
+        }
+        
+        // Actualizar target de partículas existentes
+        particles.forEach((particle, index) => {
+            if (index < particles.length - 1) {
+                particle.targetX = particles[index + 1].x;
+                particle.targetY = particles[index + 1].y;
+            } else {
+                particle.targetX = mouse.x;
+                particle.targetY = mouse.y;
+            }
+        });
+    }
+    
+    // Animación
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Actualizar y dibujar partículas
+        for (let i = particles.length - 1; i >= 0; i--) {
+            particles[i].update();
+            particles[i].draw();
+            
+            // Remover partículas muy pequeñas o transparentes
+            if (particles[i].opacity < 0.01 || particles[i].size < 1) {
+                particles.splice(i, 1);
+            }
+        }
+        
+        requestAnimationFrame(animate);
+    }
+    
+    // Agregar partículas continuamente
+    setInterval(addParticle, 50);
+    
+    // Ajustar canvas al redimensionar ventana
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+    
+    animate();
+})();
+
 // Esperar a que el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
     
