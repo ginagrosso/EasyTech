@@ -70,15 +70,7 @@ def contact(request):
         message = request.POST.get('message')
         
         if name and email and message:
-            # Guardar en base de datos
-            contact_msg = ContactMessage.objects.create(
-                name=name,
-                email=email,
-                phone=phone,
-                message=message
-            )
-            
-            # Enviar emails
+            # Enviar emails directamente (sin guardar en DB - Vercel serverless)
             try:
                 # Email al administrador
                 subject = f'Nueva consulta de {name}'
