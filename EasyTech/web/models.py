@@ -16,3 +16,19 @@ class ContactMessage(models.Model):
     
     def __str__(self):
         return f"{self.name} - {self.email}"
+
+
+class PageVisit(models.Model):
+    """Modelo para registrar visitas a las páginas"""
+    page_name = models.CharField(max_length=100, verbose_name="Página")
+    ip_address = models.GenericIPAddressField(verbose_name="IP", null=True, blank=True)
+    user_agent = models.TextField(verbose_name="Navegador", blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True, verbose_name="Fecha y Hora")
+    
+    class Meta:
+        verbose_name = "Visita"
+        verbose_name_plural = "Visitas"
+        ordering = ['-timestamp']
+    
+    def __str__(self):
+        return f"{self.page_name} - {self.timestamp.strftime('%Y-%m-%d %H:%M:%S')}"

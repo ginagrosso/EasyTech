@@ -19,7 +19,7 @@ SECRET_KEY = 'django-insecure-your-secret-key-here-change-in-production'
 # ADVERTENCIA DE SEGURIDAD: no ejecutar con debug activado en producción!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', 'easytech.ar', 'www.easytech.ar', '.now.sh', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['.vercel.app', 'easytech.ar', 'www.easytech.ar', '.now.sh', '127.0.0.1', 'localhost']
 
 
 # Definición de aplicaciones

@@ -2,16 +2,34 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
-from .models import ContactMessage
+from .models import ContactMessage, PageVisit
+
+
+def register_visit(request, page_name):
+    """Helper para registrar visitas a páginas"""
+    try:
+        ip = request.META.get('HTTP_X_FORWARDED_FOR', request.META.get('REMOTE_ADDR', ''))
+        if ip:
+            ip = ip.split(',')[0].strip()
+        user_agent = request.META.get('HTTP_USER_AGENT', '')[:500]
+        PageVisit.objects.create(
+            page_name=page_name,
+            ip_address=ip or None,
+            user_agent=user_agent
+        )
+    except:
+        pass
 
 
 def home(request):
     """Vista principal - Home Page"""
+    register_visit(request, 'Home')
     return render(request, 'web/home.html')
 
 
 def services(request):
     """Vista de servicios"""
+    register_visit(request, 'Servicios')
     services_list = [
         {
             'title': 'Desarrollo Web',
@@ -58,11 +76,13 @@ def services(request):
 
 def about(request):
     """Vista sobre nosotros"""
+    register_visit(request, 'Nosotros')
     return render(request, 'web/about.html')
 
 
 def contact(request):
     """Vista de contacto con envío de emails"""
+    register_visit(request, 'Contacto')
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
